@@ -52,6 +52,9 @@ class fde
 {
 
 public:
+
+    static void Init();
+
     fde() {
         *ipaddr = 0;
         *desc = 0;

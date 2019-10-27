@@ -1217,7 +1217,7 @@ commSetTcpKeepalive(int fd, int idle, int interval, int timeout)
 void
 comm_init(void)
 {
-    fd_table =(fde *) xcalloc(Squid_MaxFD, sizeof(fde));
+    assert(fd_table);
 
     /* make sure the accept() socket FIFO delay queue exists */
     Comm::AcceptLimiter::Instance();
@@ -1243,7 +1243,6 @@ comm_exit(void)
     delete TheHalfClosed;
     TheHalfClosed = NULL;
 
-    safe_free(fd_table);
     Comm::CallbackTableDestruct();
 }
 
